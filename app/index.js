@@ -61,8 +61,8 @@ module.exports = generators.Base.extend({
   // Installs
   install: function() {
     this.log('Installing dependencies');
-    this.npmInstall(toInstall, { 'save': true });
-    this.installDependencies();
+    // this.npmInstall(toInstall, { 'save': true });
+    // this.installDependencies();
     if (composer) {
       this.log('Installing Slim');
       this.spawnCommand('composer', ['install']);
@@ -71,6 +71,14 @@ module.exports = generators.Base.extend({
 
   paths: function() {
     this.destinationRoot('./build');
+  },
+
+  writing: function() {
+    this.fs.copyTpl(
+      this.templatePath('index.html'),
+      this.destinationPath('index.html'),
+      { header: 'Testing! Again!!' }
+    );
   }
 
 });
