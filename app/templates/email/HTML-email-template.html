@@ -1,0 +1,652 @@
+<!--
+
+This DOCTYPE is used by Gmail and Outlook.com. It is very important to test with and without a DOCTYPE because many clients strip it entirely - this effects paragraph margins & padding, centering, and box model padding.
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" /> 
+    <title>JOB NUMBER - HTML Email Title</title>
+
+    <style type="text/css">
+
+      body{ 
+        margin:0px; padding:0px;
+        -webkit-text-size-adjust:none; 
+        -ms-text-size-adjust:none; 
+        background:#ffffff;
+        min-height:1000px;
+        color:#000000;
+      }
+
+      table td {
+        border-collapse:collapse; 
+      } 
+
+      a, a:link{
+        color:#000000;    
+        text-decoration: underline;
+      } 
+
+      span.yshortcuts { 
+        color:#000000; 
+        background-color:none; 
+        border:none;
+      }
+
+      span.yshortcuts:hover,
+      span.yshortcuts:active,
+      span.yshortcuts:focus {
+        color:#000000; 
+        background-color:none; 
+        border:none;
+      }
+
+      a[href^=tel]{ 
+        color:#000000; text-decoration:none;
+      }
+
+      /*
+
+        MEDIA QUERY / RESPONSIVE CLASSES
+
+        All responsive elements are controlled within the following media query. The 'max-width' property should match the width of the designed email.  For example, if an email is designed at 600 pixels wide, then the 'max-width' of the media query should be 600 pixels. If the viewport has a width less than the 'max-width', then the responsive classes will trigger.
+
+        NOTE: Because the style properties are set inline throughout the HTML email, you are required to append '!important' at the end of every property of every responsive class.
+
+      */
+
+      @media (max-width: 600px) {
+
+        /* 
+        
+        Because of the complexity and inconsistency of hiding mobile content at the desktop breakpoint, our recommendation is to NOT conditionally hide and show content between both breakpoints.  However, it is possible to show elements on the desktop and hide it at the mobile breakpoint.
+
+        YES:
+        [show on desktop] -> [hide on mobile]
+
+        NO:
+        [hide on desktop] -> [show on mobile]
+
+        To hide an element at the mobile breakpoint, give an element a class name of "desktop".
+
+        */
+
+        .desktop { display: none !important; }
+        .break { word-break: break-all; }
+        table { width: 100% !important; }
+
+
+
+        /* Responsive classes: */
+
+        /* These are all project-specific classes. It is recommended that you remove all classes that are not required for particular projects. Use the following classes more as a reference than a requirement. */
+
+        #billboard #billboard-headline { font-size: 26px !important; }
+        #billboard #billboard-subhead { font-size: 14px !important; }
+        .mobile-no-padding { padding: 0 !important; }
+        #multi-columns-right-content tr:last-child td, #multi-columns-left-content tr:last-child td { padding-bottom: 50px !important; }
+        #multi-columns-right-content tr:first-child td, #multi-columns-left-content tr:first-child td { height: 30px !important; padding: 15px 0 !important; }
+        #multi-columns img { height: 30px; width: inherit !important; }
+        #responsive .headline { padding: 20px 20px 10px 20px !important; background: #333; }
+        #responsive .responsive-content { padding: 0 30px 20px 20px !important; }
+        #footer td { padding: 10px !important; }
+        #footer-logo td { text-align: center !important; padding: 15px !important; }
+        #footer-legal td { padding: 10px !important; text-align: center !important; }
+        #multi-columns-left-outer, #multi-columns-right-outer { padding-bottom: 15px; }
+      }
+
+    </style>
+
+  </head>
+
+  <body style="padding:0; margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:100%;">   
+
+    <!-- 
+
+    INTRODUCTION 
+
+    The key to coding quality and manageable HTML Emails is to encapsulate as much content as we can within individual tables, rows and cells. Use tables similar to the way you use DIV tags for websites. The more content we encapsulate within individual tables, the faster we can isolate and address bugs AND the more consistent our emails will render across all email clients.
+    
+    The first table in an HTML email is typically the parent wrapper for the email. The only value set to the parent should be the width (standard of 600 pixels wide) and the centered alignment. This table's ID should be set as "outer-shell" to indicate that this particular table is the email's parent wrapper.
+
+    NOTE: If the background of the email is a color other than white, you may want to begin your code with a table (id="background") before "outer-shell". This table will contain the width (100%) and the color of the email's background.
+
+    -->
+
+    <table id="outer-shell" cellpadding="0" cellspacing="0" border="0" align="center" width="600">
+      <tr>
+        <td>
+
+          <!-- 
+
+          Here's an example of encapsulating content. Even though the only content within this container is a link to view the email online, we're encapsulating it within it's own table. This will allow us to separate this particular block of content from the body of the email and allow us to position this link accordingly.
+
+          TIP: Try to get into the habit of giving each table an ID. This will allow us to target that particular table and all of it's children via media queries (should we need to do so).
+
+          IMPORTANT: It's important to note that every table should contain font styles in order for the children to inherit those styles. Styles do not carry over through nested tables.
+
+           ____________    
+          |     _____  |
+          |    |     | |   Table A is the parent of Table B.
+          |  A |  B  | |
+          |    |_____| |
+          |____________|
+
+
+          In this example, assigning a font-family of 'Arial' to Table 'A' will apply that particular font to all of it's direct children. However, it will NOT apply the font to the children of Table 'B'. You will need to add the font-family style to Table 'B' to apply that font to all of the children of Table 'B'.
+
+          -->
+
+          <table id="view-online" cellpadding="0" cellspacing="0" border="0" width="100%" align="center" style="font-family: Verdana, Helvetica; font-size: 12px;">
+            <tr>
+              <td style="text-align: center; padding: 10px 0;">
+                <a href="#" style="text-decoration: none; color: #666;">View this email online.</a>
+              </td>
+            </tr>
+          </table><!-- #view-online -->
+
+
+
+          <table id="billboard" cellpadding="0" cellspacing="0" border="0" width="100%" align="center" style="background: #333; font-family: Verdana, Helvetica; font-size: 12px; color: #fff; text-align: center;">
+            <tr>
+
+              <!-- 
+
+              Simple images with a limited number of colors should be saved as GIFs. Photographs or images that contain more than 255 colors should be saved as JPGs. The idea is to create images (either GIFs or JPGs) at the lowest possible file size without compromising the quality of the image.
+
+              In this example, saving the Bloc's logo as a GIF and not a JPG saved 1.5k in filesize. It doesn't seem like much, but every K counts.
+
+              IMPORTANT: Whenever you wrap an image within it's own TD, it is important that you give the wrapping TD a line-height of 0. This will remove any additional spacing inherited by the image.
+
+              -->
+
+              <td id="billboard-logo" style="line-height: 0px; text-align: center; padding: 45px 10px 25px 10px"><img src="images/bloc-logo.gif" width="130" height="133" alt="The CementBloc" /></td>
+
+            </tr>
+
+            <!--
+
+            The following is an example of a conditional style. On desktops, the following headlines will appear larger than at the mobile breakpoints. We're basically decreasing the font-size property at the mobile breakpoint. To do this, we first set the desired desktop size inline, and then target that element via media queries to decrease the size.
+            
+            The media query is written as follows:
+
+              #billboard #billboard-headline { font-size: 26px !important; }
+
+            This is a good example of why it's important to give each table an ID. 
+
+            -->
+
+            <tr>
+              <td id="billboard-headline" style="padding: 0px 15px 5px 15px; font-size: 36px;">HTML Email Template</td>
+            </tr>
+            <tr>
+              <td id="billboard-subhead" style="padding: 0px 10px 40px 10px; font-size: 18px; color: #ccc;">by The Bloc Devs</td>
+            </tr>
+          </table><!-- #billboard -->
+
+
+
+          <table id="introduction" cellpadding="0" cellspacing="0" border="0" width="100%" align="center" style="font-family: Verdana, Helvetica; font-size: 14px; color: #333;">
+
+            <!--
+
+            There are many ways to build and format HTML emails. The method that we use is the block method, where we wrap every paragraph and headline within its own TD. This will allow us to control the padding and spacing for every block of content.
+
+            -->
+
+            <tr>
+              <td style="font-size: 20px; font-weight: bold; padding: 35px 20px 5px 20px;">Introduction to HTML emails</td>
+            </tr>
+            <tr>
+              <td style="padding: 5px 20px 20px 20px;">HTML emails are still one of the most effective ways of reaching and engaging your audience. However, the technology behind rendering emails is still fairly restrictive for both designers and developers. Understanding these restrictions will not only help the agency produce quality emails but also decrease time spent designing, developing and maintaining them.</td>
+            </tr>
+            <tr>
+              <td style="font-size: 20px; font-weight: bold; padding: 5px 20px;">Emails can be beautiful and effective</td>
+            </tr>
+            <tr>
+              <td style="padding: 5px 20px 20px 20px;">Even though we're forced to use antiquated technologies and coding methodologies to design and build HTML emails, it <em>IS</em> possible to develop clean, beautiful and modern emails. Unfortunately, to do so, we're forced to use the absolute lowest common denominators (in terms of markup) to ensure that our designs render properly across all email clients. This will limit our development teams by forcing our code to be very verbose and limiting our creative teams to rely more on content and less on design and structure.</td>
+            </tr>
+            <tr>
+              <td style="font-size: 20px; font-weight: bold; padding: 5px 20px;">Creating responsive content</td>
+            </tr>
+            <tr>
+              <td style="padding: 5px 20px 20px 20px;">Unlike responsive websites, responsive emails rely more on consistent content than imagery. It is important to focus on one content manuscript and one image library for both mobile and desktop breakpoints. Conditionally hiding and showing content between the breakpoints has proven to be problematic and inconsistent. While it is possible to show and hide content when a user views the email, the conditions break when a user forwards or replies to an email. To avoid these situations, it is recommened that we use one content manuscript and one image library.</td>
+            </tr>
+            <tr>
+              <td style="padding: 5px 20px 20px 20px;">Keep in mind that this also applies to legal codes. An email should only have one legal code regardless of the breakpoints.</td>
+            </tr>
+            <tr>
+              <td style="font-size: 20px; font-weight: bold; padding: 5px 20px;">Some pointers</td>
+            </tr>
+            <tr>
+              <td style="padding: 5px 20px 20px 20px;">Here are some pointers on what to avoid while designing HTML emails:</td>
+            </tr>
+            <tr>
+              <td style="padding: 0 20px 0 0;">
+                
+                <!--
+                
+                While it's safe to use the UL tag, it doesn't render consistently across all email clients. The recommended method to lay out bulleted lists (especially if the bullets are branded or are styled any differently than black circles) is by wrapping each bulleted list item in it's own row within a table. The row will contain two TDs: one for the bullet, one for the content.
+
+                -->
+
+
+                <table cellpadding="0" cellspacing="0" border="0" width="100%" style="font-family: Verdana, Helvetica; font-size: 14px; color: #333;">
+                  <tr>
+                    <td valign="top" style="line-height: 0px; padding: 3px 15px 0 30px;"><img src="images/checkmark.gif" width="14" height="12" /></td>
+                    <td valign="top" style="padding-bottom: 10px;">Stay within 600 pixels. Even on desktops, most email clients display the contents of an email within a narrow panel. The minimum width for the majority of these email clients is 600 pixels wide. Keep this in mind when creating your design canvas.</td>
+                  </tr>
+                  <tr>
+                    <td valign="top" style="line-height: 0px; padding: 3px 15px 0 30px;"><img src="images/checkmark.gif" width="14" height="12" /></td>
+                    <td valign="top" style="padding-bottom: 10px;">Avoid placing live text above imagery, patterns, textures... basically, only use solid colors behind live text. Older email clients (specifically Outlook) don’t allow for background images. Some email clients allow background images. Unfortunately, there are a few email clients that still don't allow background images. To preserve the consistency across all email clients, we are forced to target the email clients with the lowest rendering abilities.</td>
+                  </tr>
+                  <tr>
+                    <td valign="top" style="line-height: 0px; padding: 3px 15px 0 30px;"><img src="images/checkmark.gif" width="14" height="12" /></td>
+                    <td valign="top" style="padding-bottom: 10px;">Avoid borders and ESPECIALLY avoid dropshadows. Borders and dropshadows often times require an excessive amount of images, markup and inline CSS which may or may not render consistently across all email clients.</td>
+                  </tr>
+                  <tr>
+                    <td valign="top" style="line-height: 0px; padding: 3px 15px 0 30px;"><img src="images/checkmark.gif" width="14" height="12" /></td>
+                    <td valign="top" style="padding-bottom: 10px;">Avoid non-email-safe fonts. If non-email-safe fonts are used, then that block of content will have to be saved as an image. Images add considerable more weight to emails. It also poses an issue for email clients that don't download images by default. Typically, users have to approve the download of images, or adjust their email client settings in order to view images. This will result in emails being viewed without images loading. Use non-email-safe fonts sparingly, if possible. <em>(The core email-safe fonts are: Arial, Courier, Georgia, Tahoma, Times New Roman, Trebuchet, Verdana).</em></td>
+                  </tr>
+                </table>
+
+              </td>
+            </tr>
+          </table><!-- #introduction -->
+
+
+          <!--
+
+          Creating multiple columns within an email will require some additional lines of markup. The idea is to wrap each column within it's own table. The width of all of the columns combined should either equal 600 (if using fixed values) or 100% (if using relative values).
+
+          In this example, we have two columns that take up 50% of the canvas at the desktop breakpoint. At the mobile breakpoint, all tables expand to 100%. This means all floating columns stack on top of each other.
+
+          -->
+
+
+          <table id="multi-columns" cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+            <tr>
+              <td style="padding: 40px 0 0 0;">
+                
+                <!--
+
+                Note: The width of this table is 50% and alignment is left. The sibling table is also 50% and alignment left. This will cause both tables to float next to each other at the desktop breakpoint.
+
+                -->
+
+                <table id="multi-columns-left-outer" align="left" width="50%" cellpadding="0" cellspacing="0" border="0" style="font-family: Verdana, Helvetica; font-size: 12px;">
+                  <tr>
+                    <td class="mobile-no-padding">
+                      <table id="multi-columns-left-content" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 12px; font-family: Verdana, Helvetica; width: 97%;">
+                        <tr>
+                          <td style="background: #333; line-height: 0px; text-align: center; height: 100px;"><img src="images/icon-columns.gif" width="62" height="62" alt="Multiple columns" /></td>
+                        </tr>
+                        <tr>
+                          <td style="background: #eee; font-size: 16px; font-weight: bold; padding: 15px 20px 0 20px;">Multiple columns</td>
+                        </tr>
+                        <tr>
+                          <td style="background: #eee; padding: 10px 20px 15px 20px;">There may be instances where multiple columns are required to lay out content. In those cases, each column would be encapsulated within their own tables.</td>
+                        </tr>
+                      </table><!-- #multi-columns-left-content -->
+                    </td>
+                  </tr>
+                </table><!-- #multi-columns-left-outer -->
+
+                <table id="multi-columns-right-outer" align="left" width="50%" cellpadding="0" cellspacing="0" border="0" style="font-family: Verdana, Helvetica; font-size: 12px;">
+                  <tr>
+                    <td class="mobile-no-padding">
+                      <table id="multi-columns-right-content" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size: 12px; font-family: Verdana, Helvetica; width: 97%" align="right">
+                        <tr>
+                          <td style="background: #333; line-height: 0px; text-align: center;" height="100" height: 100px;><img src="images/icon-responsive.gif" width="103" height="64" alt="Responsive" /></td>
+                        </tr>
+                        <tr>
+                          <td style="background: #eee; font-size: 16px; font-weight: bold; padding: 15px 20px 0 20px;">Responsive</td>
+                        </tr>
+                        <tr>
+                          <td style="background: #eee; padding: 10px 20px 15px 20px;">At the mobile breakpoint, columns would be aligned left to each other at the desktop breakpoint and their alignment will be removed at the mobile breakpoint.</td>
+                        </tr>
+                      </table><!-- #multi-columns-right-content -->
+                    </td>
+                  </tr>
+                </table><!-- #multi-columns-right-outer -->
+
+              </td>
+            </tr>
+          </table><!-- #multi-columns -->
+
+
+
+          <!--
+
+          There may be instances where you may want to stitch elements together to form one larger element. In this case we have the following structure:
+
+            _ _ _ _ _ _ _ _ _ _
+          |                    |
+          |       IMAGE 1      |
+          | _ _ _ _ _ _ _ _ _ _|
+          |          |         |
+          |   TEXT   | IMAGE 2 |
+          | _ _ _ _ _|_ _ _ _ _|
+
+
+          The elements containing images are seamlessly stitched together and appear as if they wrap around the live text.
+
+          At the mobile breakpoint, IMAGE 1 and IMAGE 2 will be hidden, meaning, only the text will be visible.
+
+          -->
+
+
+          <table id="responsive" cellpadding="0" cellspacing="0" border="0" width="100%" align="center" style="font-family: Verdana, Helvetica; font-size: 12px;">
+            <tr>
+              <td class="headline" colspan="2" style="padding-top: 50px; line-height: 0px;"><img src="images/dark-header.jpg" class="desktop" width="600" height="125" alt="Building responsive emails" /></td>
+            </tr>
+            <tr>
+              <td style="background: #333;" valign="top">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%" style="font-family: Verdana, Helvetica; font-size: 13px; color: #fff;" >
+                  <tr>
+                    <td class="responsive-content" style="padding: 0 30px 20px 45px; line-height: 16px;">Building responsive emails follow a very similar design and coding approach to building websites.  The idea is simple: use one manuscript and display the content differently for each breakpoint. And, as always, MOBILE FIRST!</td>
+                  </tr>
+                  <tr>
+                    <td class="responsive-content" style="padding: 0 30px 20px 45px; line-height: 16px;">The mobile breakpoint will be 599 -- one pixel less than the width of the email at the desktop breakpoint. At 599 pixels, the layout will snap to the mobile breakpoint. At the mobile breakpoint, it is important that we build all elements to be fluid so that they take up 100% of the viewport.</td>
+                  </tr>
+                </table>
+              </td>
+              <td class="desktop" style="line-height:0px;"><img src="images/dark-code.jpg" width="257" height="282" alt="Responsive code is... responsive!" /></td>
+            </tr>
+          </table><!-- #responsive -->
+
+
+          <table id="two-columns" cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+
+            <tr>
+              <td style="line-height: 0px; padding: 20px 0;"><img src="images/golden-dimensions.gif" class="desktop" width="600" height="31" alt="Dimensions for two columns" /></td>
+            </tr>
+
+            <tr>
+              <td>
+                
+                <!--
+
+                Within this TD, we'll include two tables: one at 370px and another at 230px. They are both aligned left, which will allow them to float next to each other at the desktop breakpoint.
+
+                -->
+
+                <table id="two-columns-left" cellpadding="0" cellspacing="0" border="0" align="left" width="370" style="font-family: Verdana, Helvetica; font-size: 14px;">
+                  <tr>
+                    <td style="font-size: 20px; font-weight: bold; padding: 5px 20px;">Standard column widths</td>
+                  </tr>
+
+                  <!--
+
+                  At the end of this paragraph, you'll notice a footnote. Footnote numbers and symbols should be wrapped with <sup> tags and be given the following styles: font-size: 10px; line-height: 0. These two styles will position and style the footnote to render consistently across all email clients.
+
+                  -->
+
+                  <tr>
+                    <td style="padding: 5px 20px;">It is common to lay out your content using multiple columns. However, it is recommended that you avoid using more than two columns. The reason for this is because, at most, three columns will have a minimum of 200 pixels each (assuming the email is built at 600px wide). This does not including gutters and padding, which will reduce your canvas for your copy even further. At 200 pixels, content begins to become crowded and difficult to read.<sup style="font-size: 10px; line-height:0">1</sup></td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 5px 20px;">There are two standard layouts for emails: single column and two columns. This panel is an example of a two column layout, with content on the left side of the panel and informational elements on the right.</td>
+                  </tr>
+                  <tr>
+                    <td style="font-size: 20px; font-weight: bold; padding: 5px 20px;">Use the Golden Ratio</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 5px 20px;">As mentioned above, the standard width for emails is 600 pixels. We recommend using the “Golden Ratio” to determine the widths of both columns. We're setting this value to set our baseline rules for emails. These numbers can be adjusted on a per-brand and a per-product basis. Our recommendation to start with the Golden Ratio and then adjust those ratios if needed. </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 5px 20px;">Using the Golden Ratio of 1.618, we’ll divide the two columns as such:</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 20px;">
+
+                    <table width="100%" cellspacing="0" cellpadding="0" border="0" style="font-family: Verdana, Helvetica; font-size: 12px;">
+                      <tr>
+                        <td style="background: #e5e5e5; font-weight: bold; border-top: 1px solid #bfbfbf; padding: 5px 10px;">Column 1</td>
+                        <td style="border-top: 1px solid #bfbfbf; padding: 5px 10px; text-align:center; color:#666;">61.8%</td>
+                        <td style="border-top: 1px solid #bfbfbf; padding: 5px 10px;  text-align:center; color:#666;">370px</td>
+                      </tr>
+                      <tr>
+                        <td style="background: #e5e5e5; font-weight: bold; border-top: 1px solid #bfbfbf; border-bottom: 1px solid #bfbfbf; padding: 5px 10px;">Column 2</td>
+                        <td style="border-top: 1px solid #bfbfbf; border-bottom: 1px solid #bfbfbf; padding: 5px 10px; text-align:center; color:#666;">38.2%</td>
+                        <td style="border-top: 1px solid #bfbfbf; border-bottom: 1px solid #bfbfbf; padding: 5px 10px; text-align:center; color:#666;">230px</td>
+                      </tr>
+                    </table>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-size: 20px; font-weight: bold; padding: 5px 20px;">The responsive golden ratio is a full 100%</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 5px 20px 20px 20px;">Because the canvas for mobile phones is very narrow, it’s important that we give ourselves enough real estate to display content at legible sizes. The standard layout for mobile devices calls for 100% wide single columns. All columns will stack on top of each other, and all elements within those columns will also stack on top of each other. Keep in mind that emails with two columns can result in the size of the email doubling in height at the mobile breakpoint because both columns will stack on top of each other.</td>
+                  </tr>
+                </table><!-- #two-columns-left -->
+
+
+                <!--
+
+                This is the second column which will float to the right of the screen at the desktop breakpoint, and stack below the previous table at the mobile breakpoint.
+
+                -->
+
+
+                <table id="two-columns-right" cellpadding="0" cellspacing="0" border="0" align="left" width="230">
+                  <tr>
+                    <td style="padding: 0 20px 40px 20px;">
+
+                      <table cellspacing="0" cellpadding="0" border="0" width="100%" style="font-family: Verdana, Helvetica; font-size: 12px; background: #eee;">
+                        <tr>
+                          <td style=" font-size: 56px; font-weight: bold; text-align: center; padding: 10px 0 5px 0;">78%</td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 0 20px 20px 20px; text-align: center;">of smartphone users read their email on their phone. It is the most popular activity on smartphones.</td>
+                        </tr>
+                      </table>
+
+                      <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                          <td style="padding: 10px 0;"><img src="images/1x1.gif" width="1" height="1" /></td>
+                        </tr>
+                      </table>
+
+                      <table cellspacing="0" cellpadding="0" border="0" width="100%" style="font-family: Verdana, Helvetica; font-size: 12px; background: #eee;">
+                        <tr>
+                          <td style="padding: 20px; background: #333; color: #fff; font-size: 18px; text-align: center;">What are your thoughts on HTML emails?</td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 20px;">
+                            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="font-family: Verdana, Helvetica; font-size: 12px;">
+                              <tr>
+                                <td valign="top" style="padding: 0px 10px 15px 0; line-height:0px;"><a href="#"><img src="images/radio.gif" border="0" width="21" height="21" alt="Radio" /></a></td>
+                                <td style="padding-bottom:10px;"><a href="#" style="color: #000; text-decoration: none;">They’re friggin awesome!</a></td>
+                              </tr>
+                              <tr>
+                                <td valign="top" style="padding: 0px 10px 15px 0; line-height:0px;"><a href="#"><img src="images/radio.gif" border="0" width="21" height="21" alt="Radio" /></a></td>
+                                <td style="padding-bottom:10px;"><a href="#" style="color: #000; text-decoration: none;">They’re OK. I’m not too crazy about them.</a></td>
+                              </tr>
+                              <tr>
+                                <td valign="top" style="padding: 0px 10px 15px 0; line-height:0px;"><a href="#"><img src="images/radio.gif" border="0" width="21" height="21" alt="Radio" /></a></td>
+                                <td style="padding-bottom:10px;"><a href="#" style="color: #000; text-decoration: none;">I hate them with every ounce of my soul.</a></td>
+                              </tr>
+                              <tr>
+                                <td colspan="2" style="line-height: 0px; border-bottom: 1px solid #ccc;"><img src="images/1x1.gif" width="1" height="1" /></td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                         <tr>
+                          <td style="padding: 0px 20px 20px 20px; font-size: 10px;">Did you know that you could begin a survey experience from within an email? The trick is to treat the actual selection of an option as a click, which will take users to a landing page along with a URL parameter which will declare the user's selection. For example: http://site.com?choice=friggin-awesome. On the landing page, the server will parse out 'friggin-awesome' as their choice. With this, we can run visual conditions, store the data, and much more.</td>
+                        </tr>
+                       </table>
+
+                    </td>
+                  </tr>
+                </table><!-- two-columns-right -->
+
+              </td>
+            </tr>
+          </table><!-- #two-columns -->
+
+
+          <!--
+
+          It is recommended that text should never be less than 10px. While text below 10px may render properly in certain email clients, it becomes illegible in others.
+
+          -->
+
+
+          <table id="references" cellpadding="0" cellspacing="0" border="0" width="100%" align="center" style="font-family: Verdana, Helvetica; font-size: 12px;">
+            <tr>
+              <td style="font-size: 10px; padding: 20px; border-top: 1px solid #ccc;">
+
+                <!-- 
+
+                There may be situations where we are asked to include long URLs as text. In these situations, the long URLs could break the structure or the email. To fix this particular issue, it is recommended that you use a 'break' class to the long URL/text in order to break the URL into separate lines. (See links below).
+
+                -->
+
+                <strong>References</strong>: <strong>1</strong>. National Institutes of Health. Diabetic retinopathy: causes and risk factors. NIHSeniorHealth website. <a class="break" href="http://nihseniorhealth.gov/diabeticretinopathy/causesandriskfactors/01.html" style="color: #000;">http://nihseniorhealth.gov/diabeticretinopathy/causesandriskfactors/01.html</a>. Accessed February 10, 2015. <strong>2</strong>. National Eye Institute, National Institutes of Health, US Dept of Health and Human Services. Facts about diabetic eye disease. <a class="break" href="https://www.nei.nih.gov/health/diabetic/retinopathy" style="color: #000;">https://www.nei.nih.gov/health/diabetic/retinopathy</a>. Accessed February 10, 2015. <strong>3</strong>. Danis RP. Diabetic macular edema. In: Albert DM, Miller JW, Azar DT, Blodi BA, eds. Albert &amp; Jakobiec’s Principles and Practice of Ophthalmology. 3rd ed. Philadelphia, PA: WB Saunders; 2008:1793-1806.
+              </td>
+            </tr>
+          </table><!-- #references -->
+
+
+          <!--
+
+            Occassionally, we'll be asked to include an ISI at the bottom of an email. We will follow the same block structure from above (where all paragraphs and headlines are stored within their own rows).
+
+          -->       
+
+          <table id="isi" cellpadding="0" cellspacing="0" border="0" width="100%" align="center" style="font-family: Verdana, Helvetica; font-size: 11px;">
+            <tr>
+              <td style="padding: 0 32px 10px 32px; font-weight: bold;">IMPORTANT SAFETY INFORMATION AND INDICATION</td>
+            </tr>
+            <tr>
+              <td style="padding:0 20px 5px 20px">
+
+                <!-- 
+
+                The boxed warning will be stored within it's own table. Adjust the thickness of the border by changing the border property of the TD. The default thickness is 2px.
+
+                -->
+
+                <table id="boxed-warning" cellpadding="0" cellspacing="0" border="0" width="100%" style="background: #fff; font-family: Verdana, Helvetica; font-size: 12px; line-height: 16px;">
+                  <tr>
+                    <td style="border: 2px solid #000; padding: 10px;">Some people have had changes in behavior, hostility, agitation, depressed mood, suicidal thoughts or actions while using CEMENTBLOC to help them quit smoking. Some people had these symptoms when they began taking CEMENTBLOC, and others developed them after several weeks of treatment or after stopping CEMENTBLOC. If you, your family or caregiver notice agitation, hostility, depression or changes in behavior, thinking, or mood that are not typical for you, or you develop suicidal thoughts or actions, anxiety, panic, aggression, anger, mania, abnormal sensations, hallucinations, paranoia or confusion, stop taking CEMENTBLOC and call your doctor right away. Also tell your doctor about any history of depression or other mental health problems before taking CEMENTBLOC, as these symptoms may worsen while taking CEMENTBLOC.</td>
+                  </tr>
+                </table><!-- #boxed-warning -->
+
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding: 5px 32px; line-height: 16px;">Some people had seizures during treatment with CEMENTBLOC. Most cases happened during the first month of treatment. Tell your doctor if you have a history of seizures. If you have a seizure during treatment with CEMENTBLOC, stop taking CEMENTBLOC and contact your healthcare provider right away.</td>
+            </tr>
+
+            <tr>
+              <td style="padding: 5px 32px; line-height: 16px;">Decrease the amount of alcohol you drink while taking CEMENTBLOC until you know if CEMENTBLOC affects your ability to tolerate alcohol. Some people experienced increased drunkenness, unusual or sometimes aggressive behavior, or memory loss of events while consuming alcohol during treatment with CEMENTBLOC.</td>
+            </tr>
+
+            <tr>
+              <td style="padding: 5px 32px; line-height: 16px;">Do not take CEMENTBLOC if you have had a serious allergic or skin reaction to CEMENTBLOC. Some people can have serious skin reactions while taking CEMENTBLOC, some of which can become life-threatening. These can include rash, swelling, redness, and peeling of the skin. Some people can have allergic reactions to CEMENTBLOC, some of which can be life-threatening and include: swelling of the face, mouth, and throat that can cause trouble breathing. If you have these symptoms or have a rash with peeling skin or blisters in your mouth, stop taking CEMENTBLOC and get medical attention right away.</td>
+            </tr>
+
+            <tr>
+              <td style="padding: 5px 32px; line-height: 16px;">Before starting CEMENTBLOC, tell your doctor if you have a history of heart or blood vessel problems. If you have new or worse heart or blood vessel symptoms during treatment, tell your doctor. Get emergency medical help right away if you have any symptoms of a heart attack or stroke.</td>
+            </tr>
+
+            <tr>
+              <td style="padding: 5px 32px; line-height: 16px;">The most common side effects of CEMENTBLOC include nausea (30%), sleep problems, constipation, gas and/or vomiting. If you have side effects that bother you or don’t go away, tell your doctor. You may have trouble sleeping, vivid, unusual or strange dreams while taking CEMENTBLOC. Use caution driving or operating machinery until you know how CEMENTBLOC may affect you.</td>
+            </tr>
+
+            <tr>
+              <td style="padding: 5px 32px; line-height: 16px;">CEMENTBLOC should not be taken with other quit-smoking products. You may need a lower dose of CEMENTBLOC if you have kidney problems or get dialysis.</td>
+            </tr>
+
+            <tr>
+              <td style="padding: 5px 32px 40px 32px; line-height: 16px;">Before starting CEMENTBLOC, tell your doctor if you are pregnant, plan to become pregnant, or if you take insulin, asthma medicines or blood thinners. Medicines like these may work differently when you quit smoking.</td>
+            </tr>
+          </table><!-- #isi -->
+
+
+          <!--
+
+          The footer can vary. Some can contain logos, links, legal copy and med legal submission numbers.
+
+          -->
+
+
+          <table id="footer" cellpadding="0" cellspacing="0" border="0" width="100%" align="center" style="font-family: Verdana, Helvetica; font-size: 12px; background: #eee;">
+            <tr>
+              <td style="border-top: 1px solid #ccc; padding:32px;">
+
+                <table id="footer-logo" cellspacing="0" cellpadding="0" border="0" width="30%" align="left">
+                  <tr>
+                    <td><a href="#"><img src="images/bloc-logo-footer.gif" width="135" height="25" border="0" /></a></td>
+                  </tr>
+                </table><!-- #footer-logo -->
+
+                <table id="footer-legal" cellspacing="0" cellpadding="0" border="0" width="70%" align="left" style="font-family: Verdana, Helvetica; font-size: 12px;">
+                  <tr>
+                    <td style="text-align: right; font-size: 11px; color: #999; padding: 6px 0;">&copy; 2015, CementBloc. All rights reserved. <span class="desktop">BLOC-00001</span></td>
+                  </tr>
+                </table><!-- #footer-legal -->
+              </td>
+            </tr>
+            <tr>
+              <td>
+
+                <table id="footer-links" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-family: Verdana, Helvetica; font-size: 12px;">
+                  <tr>
+                    <td style="text-align: center; font-size: 11px; color: #999; line-height:24px; padding-top: 10px; padding-bottom: 10px;">
+                      <a href="#" style="white-space: nowrap; color: #999;">Privacy Policy</a> | 
+                      <a href="#" style="white-space: nowrap; color: #999;" >Terms &amp; Conditions</a> |
+                      <a href="#" style="white-space: nowrap; color: #999;">Prescribing Information</a> | 
+                      <a href="#" style="white-space: nowrap; color: #999;">Contact</a>
+                    </td>
+                  </tr>
+                </table><!-- #footer-links -->
+
+              </td>
+            </tr>
+          </table><!-- #footer -->
+
+
+
+        </td>
+      </tr>
+    </table>
+
+  </body>
+
+</html>
+
+
+
+
+<!--
+
+  SAMPLE CODE:
+
+
+    Images:
+    <img src="" width="" height="" alt="" border="0" />
+
+
+    Tables:
+    <table id="" cellspacing="0" cellpadding="0" border="0" width="100%">
+      <tr>
+        <td></td>
+      </tr>
+    </table>
+
+
+    Superscripts:
+    <sup style="font-size: 10px; line-height: 0;">1</sup>
+
+-->
